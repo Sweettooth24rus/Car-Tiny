@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.ExtCtrls,
   Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Imaging.JPEG,
   Vcl.ExtDlgs, VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series,
-  VCLTee.TeeProcs, VCLTee.Chart, VCLTee.DBChart, frxClass, frxDBSet;
+  VCLTee.TeeProcs, VCLTee.Chart, VCLTee.DBChart;
 
 type
   TForm3 = class(TForm)
@@ -72,15 +72,6 @@ type
     Series2: TBarSeries;
     DBChart3: TDBChart;
     Series3: TPieSeries;
-    RDataSetSellers: TfrxDBDataset;
-    ReportSellers: TfrxReport;
-    RepButtonSellers: TButton;
-    RDataSetCars: TfrxDBDataset;
-    RDataSetSoldCars: TfrxDBDataset;
-    ReportCars: TfrxReport;
-    ReportSoldCars: TfrxReport;
-    RepButtonCars: TButton;
-    RepButtonSoldCars: TButton;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ImageButtonClick(Sender: TObject);
@@ -94,9 +85,6 @@ type
     procedure SellerButtonClick(Sender: TObject);
     procedure CarImageDeleteClick(Sender: TObject);
     procedure SellerCheckFilterClick(Sender: TObject);
-    procedure RepButtonSellersClick(Sender: TObject);
-    procedure RepButtonCarsClick(Sender: TObject);
-    procedure RepButtonSoldCarsClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -266,21 +254,6 @@ begin
       CarImage.Picture.LoadFromFile('NI.png');
       raise Exception.Create('File does not exist.');
     end;
-end;
-
-procedure TForm3.RepButtonCarsClick(Sender: TObject);
-begin
-  ReportCars.ShowReport(True);
-end;
-
-procedure TForm3.RepButtonSellersClick(Sender: TObject);
-begin
-  ReportSellers.ShowReport(True);
-end;
-
-procedure TForm3.RepButtonSoldCarsClick(Sender: TObject);
-begin
-  ReportSoldCars.ShowReport(True);
 end;
 
 procedure TForm3.SellerAddClick(Sender: TObject);
