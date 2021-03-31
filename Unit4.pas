@@ -39,8 +39,10 @@ end;
 
 procedure TForm4.FormCreate(Sender: TObject);
 begin
-  login := 'Admin';
-  password := 'qwerty';
+  //login := 'Admin';
+  //password := 'qwerty';
+  login := '';
+  password := '';
 end;
 
 procedure TForm4.JoinButtonClick(Sender: TObject);

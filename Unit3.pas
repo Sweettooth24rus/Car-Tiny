@@ -121,7 +121,7 @@ begin
     Parameters.ParamByName('Drive').Value := CarDrive.ItemIndex + 1;
     ExecSQL;
     SQL.Clear;
-    SQL.Add('INSERT INTO car (CarTechID, SellerID, CarDate, CarCost, CarBirth, CarDescription, CarPriority, CarImage)');
+    SQL.Add('INSERT INTO car (SellerID, CarDate, CarCost, CarBirth, CarDescription, CarPriority, CarImage)');
     SQL.Add('VALUES ((SELECT CarTechID FROM cartech ORDER BY CarTechID DESC LIMIT 1), :Seller, :Date, :Cost, :Birth, :Description, :Priority, :Image)');
     Parameters.ParamByName('Seller').Value := CarSeller.ItemIndex + 1;
     Parameters.ParamByName('Date').Value := FormatDateTime('yyyy/mm/dd', System.SysUtils.Date);
@@ -147,11 +147,11 @@ begin
   with DataModule2.Q_Act do
   begin
     SQL.Clear;
-    SQL.Add('INSERT INTO soldcar (SoldCarID, CarTechID, SellerID, SoldCarCost, SoldCarBirth, SoldCarDescription, SoldCarDate, SoldCarImage)');
+    SQL.Add('INSERT INTO soldcar (CarTechID, SellerID, SoldCarCost, SoldCarBirth, SoldCarDescription, SoldCarDate, SoldCarImage)');
     SQL.Add('VALUES (:ID, :Tech, :Seller, :Cost, :Birth, :Description, :Date, :Image)');
     Parameters.ParamByName('ID').Value := DataModule2.Q_Cars.FieldByName('CarID').AsString;
     Parameters.ParamByName('Tech').Value := DataModule2.Q_Cars.FieldByName('CarTechID').AsString;
-    Parameters.ParamByName('Seller').Value := DataModule2.Q_Cars.FieldByName('SellerID').AsString;
+    //Parameters.ParamByName('Seller').Value := DataModule2.Q_Cars.FieldByName('SellerID').AsString;
     Parameters.ParamByName('Cost').Value := DataModule2.Q_Cars.FieldByName('CarCost').AsString;
     Parameters.ParamByName('Birth').Value := DataModule2.Q_Cars.FieldByName('CarBirth').AsString;
     Parameters.ParamByName('Description').Value := DataModule2.Q_Cars.FieldByName('CarDescription').AsString;
@@ -309,7 +309,7 @@ begin
     SQL.Add('SellerPhone=''' + SellerPhone.Text + ''', ');
     SQL.Add('AddressID=''' + IntToStr(SellerAddress.ItemIndex + 1) + ''', ');
     SQL.Add('SellerImage=''' + StringReplace(SellerImagePath, '\', '\\', [rfReplaceAll]) + ''' ');
-    SQL.Add('WHERE SellerID = ' + DBGrid2.Fields[0].AsString);
+    //SQL.Add('WHERE SellerID = ' + DBGrid2.Fields[0].AsString);
     ExecSQL;
   end;
   DataModule2.Q_Sellers.Active := False;
